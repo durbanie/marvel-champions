@@ -1,0 +1,62 @@
+BD
+	Champion: ICE (4961)
+	Champion: LC (4007)
+	Champion: AA (3932)
+	Champion: ST (3825)
+	Champion: HYP (3744)
+frg
+	Champion: CM (5470)
+	Champion: AV (4355)
+	Champion: YJ (4197)
+	Champion: SW (4124)
+	Champion: DD (4119)
+SMY
+	Champion: MDO (6194)
+	Champion: YDU (5718)
+	Champion: STM (5506)
+	Champion: SMS (5421)
+	Champion: RR (4491)
+BL
+	Champion: BPCW (5797)
+	Champion: VAOU (5389)
+	Champion: CYC (4250)
+	Champion: RNO (3983)
+	Champion: WM (3952)
+Ama
+	Champion: CA2 (5808)
+	Champion: LOK (4653)
+	Champion: CW (4433)
+	Champion: MGN (4181)
+	Champion: VP (4168)
+BM
+	Champion: GP (6254)
+	Champion: WX23 (5553)
+	Champion: MGK (5389)
+	Champion: QK (4766)
+	Champion: DP (4412)
+JV
+	Champion: GUIL (5708)
+	Champion: UC (5386)
+	Champion: SL (5243)
+	Champion: BP (5205)
+	Champion: WLV (5171)
+ry
+	Champion: CB (5701)
+	Champion: HLK (5384)
+	Champion: ROG (4555)
+	Champion: ULT (4107)
+	Champion: MGMN (4070)
+Jus
+	Champion: DVD (6312)
+	Champion: THR (5984)
+	Champion: SM (5960)
+	Champion: VIS (5796)
+	Champion: BW (5790)
+Prx
+	Champion: DRX (5266)
+	Champion: GR (4595)
+	Champion: NC (4446)
+	Champion: TH (4444)
+	Champion: MMKK (4329)
+Total PI: 246504
+Champs Used: 50

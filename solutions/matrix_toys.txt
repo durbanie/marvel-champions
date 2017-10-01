@@ -1,0 +1,12 @@
+data/hp-non-optimal.csv:
+Owner1
+	Champion: champ1 (110)
+	Champion: champ2 (100)
+Owner2
+	Champion: champ3 (60)
+	Champion: champ4 (40)
+Total PI: 310
+Champs Used: 4
+
+data/hp-no-solution.csv:
+No solution found.
