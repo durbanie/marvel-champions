@@ -18,7 +18,7 @@ Given *M* players (or owners) in an alliance, each with *N* champions (e.g. Thor
 
 Assuming a solution exists, ideally we want to find the solution that maximizes the total power index (i.e. the "optimal solution").
 
-### Variation
+### Battlegroup Variation
 
 I'm now told that the uniqueness doesn't need to be across the entire alliance, rather within individual "battle groups". This actually makes finding the "optimal" solution much more difficult as it adds additional combinatorics (see the Brute Force section below).
 
@@ -37,13 +37,15 @@ Now, let's look at practical values for *M*, *N*, and *k*. My Dad's alliance has
 * Each owner has 30-choose-5 = 142,506 possible combinations.
 * The entire alliance (therefore) has 142,506^30 = 4x10^154 possible combinations.
 
-Assuming (for the sake of the argument) that a typical computer operating at 10 GHz evaluates one combination every cycle, it would take ~10^144 seconds to evaluate all possible combinations, which is ~10^137 years (hundreds of orders of magnitude longer than the estimated age of the universe, which is only a mere 1.4x10^10 years old).
+Assuming (for the sake of the argument) that a typical computer operating at ~10 GHz evaluates one combination every cycle, it would take ~10^144 seconds to evaluate all possible combinations, which is ~10^137 years (hundreds of orders of magnitude longer than the estimated age of the universe, which is only a mere 1.4x10^10 years old).
 
-#### Brute Force for Variation
+#### Brute Force for the Battlegroup Variation
 
 In this case, we divide the alliance into 3 equal battlegroups of 10 owners. For the first battlegroup, we have 30 possible owners, so we have 30-choose-10 = ~30 million combinations. For the second battle group, we need to choose 10 players from the remaining 20, so there are 20-choose-10 = 185 thousand combinations. The remaining 10 would be assigned to the last battlegroup. 
 
-So we have 30 million times 185 thousand, which is about 5.5 trillion possible battlegroup combinations. We need to multiply that by the 4x10^154 possible combinations from the original problem, giving us a grand total of 2x10^167 possible combinations for the variation!
+So we have 30 million times 185 thousand, which is about 5.5 trillion possible battlegroup combinations. This actually double counts many configurations (e.g. this counts a particular configuration in battlegroup 1 and another in battlegroup 2 as a separate instance from one where the two identical configurations switch battlegroups). To be precise, this overcounts by a factor 3!=6, so there is actually about 925 billion battlegroup combinations.
+
+We need to multiply that by the 4x10^154 possible combinations from the original problem, giving us a grand total of 3.8x10^166 possible combinations for the variation!
 
 ### Matrix Strategy
 
@@ -53,7 +55,7 @@ The matrix strategy chooses a configuration as follows:
 2) Iterate through each element (champion) in the matrix and score each champion according to some heuristic (e.g. negative of the maximum number of points). The score should be interpreted as a "cost" of choosing a particular champion for a particular owner.
 3) Choose the champion with the minimum cost (e.g. for the example heuristic above, it would be the champion with the maximum number of points of all elements in the MxN matrix).
 4) Once a choice is made, remove all other champions of the same type that are left in the matrix so that we never choose the same champion twice.
-5) Repeat steps 2-4 until either a) we arrive at a solution (the solution is "complete") or b) we arrive at a case where no solution is possible because a given owner doesn't have enough remaining champions.
+5) Repeat steps 2-4 until either a) we arrive at a solution (the solution is "complete") or b) we arrive at a case where no solution is possible because a given owner doesn't have enough remaining champions in their pool.
 
 #### Implementation
 
