@@ -1,5 +1,13 @@
 # Marvel Contest of Champions - Uniqueness Problem
 
+## Prerequisites
+
+This code requires python 2.7: https://www.python.org/downloads/
+
+To run, enter the following at the command line:
+
+%> python matrix_algorithm.py
+
 ## Overview of the Game
 
 ## The Problem
@@ -50,6 +58,8 @@ The matrix strategy chooses a configuration as follows:
 ### Implementation
 
 A MatrixAlgorithmBase class implements much of the details of this algorithm, except for the cost function. This (abstract) method should be implemented in sub-classes, an example of which is MatrixHighestPoints, which defines the cost as the negative of the PI of each remaining champion for each owner that still needs to make the requisite choices. If an owner has already made all *k* choices, define the cost as 0 for each of their champions, which will always be greater than the cost of other eligible owner's champions and so will never be chosen.
+
+The algorithm does find a solution for the example data set for *k*=5.
 
 ### Optimal Solution Correctness
 
