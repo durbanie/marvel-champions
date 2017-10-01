@@ -18,9 +18,9 @@ I'm now told that the uniqueness doesn't need to be across the entire alliance, 
 
 ### Brute Force
 
-The naive brute force solution (iterating through all possible combinations and checking that the solution is valid and produces the maximum) for this problem is impractical. Each player needs to select *k* champions from *N* possible elements, without repetition and the order of selection does not matter. Mathematically, this is a combination and it's value is given by the binomial coefficient, or "N-choose-k" (nCk):
+The naive brute force solution (iterating through all possible combinations and checking that the solution is valid and produces the maximum) for this problem is impractical. Each player needs to select *k* champions from *N* possible elements, without repetition and the order of selection does not matter. Mathematically, this is a combination and it's value is given by the binomial coefficient, or "N-choose-k" (*NCk*):
 
-*NCk = N! / (k! \. (N - k)!)*
+*NCk = N! / (k! x (N - k)!)*
 
 Since we have *NCk* combinations for each of *M* owners, there are a total of *NCk^M* combinations to iterate through for the naive solution. 
 
