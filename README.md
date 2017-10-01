@@ -38,3 +38,29 @@ In this case, we divide the alliance into 3 equal battlegroups of 10 owners. For
 So we have 30 million times 185 thousand, which is about 5.5 trillion possible battlegroup combinations. We need to multiply that by the 4x10^154 possible combinations from the original problem, giving us a grand total of 2x10^167 possible combinations for the variation!
 
 ## Matrix Strategy
+
+The matrix strategy chooses a configuration as follows:
+
+1) For *M* owners each with a pool of *N* champions, create an *MxN* matrix.
+2) Iterate through each element (champion) in the matrix and score each champion according to some heuristic (e.g. negative of the maximum number of points). The score should be interpreted as a "cost" of choosing a particular champion for a particular owner.
+3) Choose the champion with the minimum cost (e.g. for the example heuristic above, it would be the champion with the maximum number of points of all elements in the MxN matrix).
+4) Once a choice is made, remove all other champions of the same type that are left in the matrix so that we never choose the same champion twice.
+5) Repeat steps 2-4 until either a) we arrive at a solution (the solution is "complete") or b) we arrive at a case where no solution is possible because a given owner doesn't have enough remaining champions.
+
+### Implementation
+
+A MatrixAlgorithmBase class implements much of the details of this algorithm, except for the cost function. This (abstract) method should be implemented in sub-classes, an example of which is MatrixHighestPoints, which defines the cost as the negative of the PI of each remaining champion for each owner that still needs to make the requisite choices. If an owner has already made all *k* choices, define the cost as 0 for each of their champions, which will always be greater than the cost of other eligible owner's champions and so will never be chosen.
+
+### Optimal Solution Correctness
+
+Whether or not the solution is optimal depends on the cost function. For the simple "highest points" implementation, the algorithm is neither guaranteed to find the optimal solution, nor a solution at all, even if one exists. See the two toy examples in the "data" directory. In each case, there are 2 owners with 3 or 4 champions, and we impose that each owner must select 2 champions.
+
+hp-non-optimal.csv: The optimal solution, by inspection, is for Owner1 to choose champ3 & champ4 and Owner2 to choose champ1 & champ2, for a total of 350 PI. However, the algorithm reverses these for a total of 310 PI.
+
+hp-no-solution.csv: In this case, a solution actually exists: Owner1 chooses champ1 and champ3 and Owner2 chooses champ2 and champ4. However the algorithm greedily chooses champ1 and champ2 for Owner1, leaving only champ4 for Owner2 which leaves no solution.
+
+### Efficiency
+
+The efficiency of this strategy depends on the implementation details of the cost function. The cost function will be called for each element in the matrix, for each choice. There are *Mk* choices and the matrix has at most *MN* elements. Therefore the algorithm runs as *O(M^2 N k)xO(c)*, where *O(c)* is the assymptotic runtime of the cost function.
+
+For the highest points implementation, the cost function has constant runtime, so the algorithm runs as *O(M^2 N k)*.
