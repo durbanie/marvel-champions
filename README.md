@@ -71,6 +71,8 @@ hp-non-optimal.csv: The optimal solution, by inspection, is for Owner1 to choose
 
 hp-no-solution.csv: In this case, a solution actually exists: Owner1 chooses champ1 and champ3 and Owner2 chooses champ2 and champ4. However the algorithm greedily chooses champ1 and champ2 for Owner1, leaving only champ4 for Owner2 which leaves no solution.
 
+On the test data (data/example-data.csv), the highest points matrix algorithm yields a solution with a total PI of 246,504. Note that if we were to choose the top 5 champions from each owner (regardless of uniqueness), the total PI would be 263,811, only ~17,000 points higher. The optimal solution on this particular dataset must be less than this, so our matrix algorithm is likely fairly close to optimal.
+
 #### Efficiency
 
 The efficiency of this strategy depends on the implementation details of the cost function. The cost function will be called for each element in the matrix, for each choice. There are *Mk* choices and the matrix has at most *MN* elements. Therefore the algorithm runs as *O(M^2 N k)xO(c)*, where *O(c)* is the asymptotic runtime of the cost function.
