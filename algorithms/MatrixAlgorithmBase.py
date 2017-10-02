@@ -92,3 +92,7 @@ class MatrixAlgorithmBase:
     def remainingNumberOfChoices(self, owner):
         return (self.numberOfChoices_ - 
                 self.config_.getOwnerNumChampions(owner.getName()))
+
+    def getRemainingChampions(self, owner):
+        used = self.config_.getUsed()
+        return owner.getAvailableChampions(used)

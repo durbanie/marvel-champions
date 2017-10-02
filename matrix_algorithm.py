@@ -1,11 +1,12 @@
 import csv
 
 from algorithms import MatrixHighestPoints
+from algorithms import MatrixHighestPointsLowestPlayers
 from entities import OwnerSet
 
 numberOfChoices = 5
 owners = OwnerSet.importFromCsv('data/example-data.csv')
-alg = MatrixHighestPoints(owners, numberOfChoices)
+alg = MatrixHighestPointsLowestPlayers(owners, numberOfChoices)
 config = alg.findConfiguration()
 if config is not None:
     config.prettyPrint()
