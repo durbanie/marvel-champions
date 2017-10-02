@@ -5,10 +5,22 @@ from algorithms import MatrixHighestPointsLowestPlayers
 from entities import OwnerSet
 
 numberOfChoices = 5
-owners = OwnerSet.importFromCsv('data/example-data.csv')
-alg = MatrixHighestPointsLowestPlayers(owners, numberOfChoices)
-config = alg.findConfiguration()
-if config is not None:
-    config.prettyPrint()
-else:
-    print "No solution found."
+file='data/example-data.csv'
+
+def run(alg):
+    config = alg.findConfiguration()
+    if config is not None:
+        config.prettyPrint()
+    else:
+        print "No solution found."
+
+owners = OwnerSet.importFromCsv(file)
+
+print "--------------------------------------------------"
+print "Matrix (highest points):"
+run(MatrixHighestPoints(owners, numberOfChoices))
+
+print ""
+print "--------------------------------------------------"
+print "Matrix (highest points/worst player):"
+run(MatrixHighestPointsLowestPlayers(owners, numberOfChoices))
