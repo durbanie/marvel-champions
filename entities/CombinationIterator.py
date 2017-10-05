@@ -70,6 +70,9 @@ class CombinationIterator:
 
         # Update the index and return it's value for the next level in the
         # recursion stack.
-        self.indexes_[metaIndex] = index
-        return index
+        if self.indexes_ is not None:
+            self.indexes_[metaIndex] = index
+            return index
+        else:
+            return -1
 

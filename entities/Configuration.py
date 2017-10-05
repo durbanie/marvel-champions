@@ -1,23 +1,34 @@
+import copy
+
 class Configuration:
     """Holds a configuration of owners and the champions they have chosen."""
 
-    def __init__(self):
-        """Constructor takes no parameters. Sets up the configuration hash."""
-        self.config_ = {}
-        self.used_ = set([])
-        self.powerIndex_ = 0
+    def __init__(self, other=None):
+        """
+        Constructor either takes no parameters and simply sets up the
+        configuration hash, or takes another Configuration object (used as a
+        copy constructor).
+        """
+        if other is None:
+            self.config_ = {}
+            self.used_ = set([])
+            self.powerIndex_ = 0
+        else:
+            self.config_ = copy.copy(other.getConfig())
+            self.used_ = copy.copy(other.getUsed())
+            self.powerIndex_ = other.getPowerIndex()
 
     def __repr__(self):
         """Format used to print to the console for debugging."""
         return 'PI: {}, Configuration: {}'.format(
             self.powerIndex_, self.config_)
 
-    def setOwnerConfig(self, ownerName, champions, powerIndex):
+    def setOwnerConfig(self, ownerName, champions):
         """Adds the owner-config to the global configuration."""
         self.config_[ownerName] = champions
         for c in champions:
             self.used_.add(c.getType())
-        self.powerIndex_ += powerIndex
+        self.powerIndex_ += sum([c.getPowerIndex() for c in champions])
 
     def updateOwnerConfig(self, ownerName, champion):
         """Updates the owner configuration with a single champion."""
@@ -33,6 +44,10 @@ class Configuration:
         Checks if the configuration already contains a particular ownerName.
         """
         return ownerName in self.config_;
+
+    def getConfig(self):
+        """Returns the configuration hash."""
+        return self.config_
 
     def getUsed(self):
         """Returns the set of types currently used by this configuration."""
